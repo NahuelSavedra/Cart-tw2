@@ -1,0 +1,67 @@
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div *ngIf="apiStatus" class="container px-4 px-lg-5 mt-5">
+      <div class="d-flex justify-content-between">
+        <h2 class="fw-bolder mb-4">Todos los productos</h2>
+        <div>
+          <a *ngIf="isAdmin" class="btn btn-primary " routerLink="/nuevo" routerLinkActive="active">Nuevo producto</a>
+        </div>
+      </div>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            <div *ngFor="let product of products; index as i; first as isFirst" class="col mb-5">
+              <div class="card h-100">
+                <div *ngIf="product.ofert" class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                <div class="img-container">
+                  <img class="card-img-top img" src={{product.img}} alt="..." />
+                </div>
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">{{product.name}}</h5>
+                        <div class="d-flex justify-content-evenly">
+                          <p *ngIf="product.ofert" class="text-decoration-line-through">${{product.price}}.-</p><p *ngIf="product.ofert">  ${{product.price - (product.price / product.desc)}}.-</p>
+                          <p *ngIf="!product.ofert">${{product.price}}.-</p>
+                        </div>
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="agregarReloj(product)">
+                          <i class="bi-cart-fill me-1"></i>
+                          Añadir al carrito
+                      </button>
+                    </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['/productos', product.codigo]" routerLinkActive="active">Ver detalles</a></div>
+                </div>
+            </div>
+          </div>
+          <!--
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Oferta</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of carrito">
+                  <td>{{product.cantidad}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.codigo}}</td>
+                  <td *ngIf="!product.ofert">${{product.price}}.-</td>
+                  <td *ngIf="product.ofert">${{product.price - (product.price / product.desc)}}.-</td>
+                  <td *ngIf="product.ofert">SI</td>
+                  <td *ngIf="!product.ofert">NO</td>
+                  <td><button class="btn btn-danger" (click)="sacarReloj(product)">X</button></td>
+              </tr>
+            </tbody>
+          </table>
+          -->
+        </div>
+    </div>
+    <div *ngIf="!apiStatus" class="notFound">
+        <p class="error">Ha ocurrido un error. Intente mas tarde.</p>
+    </div>
+</section>

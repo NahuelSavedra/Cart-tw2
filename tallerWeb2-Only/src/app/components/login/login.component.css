@@ -1,0 +1,26 @@
+.formContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: url("https://fondosmil.com/fondo/23379.jpg") 50% 50%;
+  background-size: cover;
+
+}
+
+
+form {
+    max-width: 300px;
+    margin: 8% auto;
+    margin-bottom: 5% !important;
+    border: 1px solid rgb(59, 59, 59);
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px 2px rgb(43, 43, 43);
+    padding: 15px;
+}
+
+.error{
+  font-style: italic;
+  color: rgb(199, 109, 109);
+  font-size: 0.8em;
+}

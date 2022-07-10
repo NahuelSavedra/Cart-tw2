@@ -1,0 +1,31 @@
+<div class="formContainer">
+  <form [formGroup]='formSignIn' (ngSubmit)="signIn();">
+    <div class="d-flex justify-content-center">
+      <img src="../../../assets/logo.png" alt="Logo" style="width: 30%">
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <p class="form-label">Email</p>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Ingrese su Correo"/>
+      <p class="error" *ngIf="formSignIn.controls['email'].hasError('required') && formSignIn.controls['email'].dirty">Este campo es requerido.</p>
+      <p class="error" *ngIf="formSignIn.controls['email'].hasError('email')">Formato Invalido.</p>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <p class="form-label">Contraseña</p>
+      <input type="password" id="password" class="form-control" formControlName="password" placeholder="Ingrese su Contraseña"/>
+      <p class="error" *ngIf="formSignIn.controls['password'].hasError('required')  && formSignIn.controls['password'].dirty">Este campo es requerido.</p>
+      <p class="error" *ngIf="errorMessage !== ''">{{errorMessage}}</p>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-outline-dark btn-block mb-4" [disabled]="formSignIn.invalid" >Iniciar sesión</button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>¿Aún no tienes cuenta? <a routerLink="/register" routerLinkActive="active" class="btn btn-warning justify-content-center">Registrarme</a></p>
+      <p>¿Olvidaste tu contraseña? <button (click)='recoverPass();' class=" btn btn-danger justify-content-center">Recuperar Contraseña</button></p>
+    </div>
+  </form>
+</div>

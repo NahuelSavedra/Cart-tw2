@@ -1,0 +1,47 @@
+<div class="formContainer">
+  <form [formGroup]='formPurchase' (submit)="confirmPurchase()" class="row">
+    <div class="form-group">
+      <h2>Complete los datos de pago</h2>
+    </div>
+    <div class="form-group d-flex justify-content-center align-content-center">
+      <img src="./../../../assets/card.png" alt="card" style="width: 60%;">
+    </div>
+
+    <div class="form-group">
+      <label for="numero">Numero de Tarjeta</label>
+      <input type="number" class="form-control" id="numero" formControlName="numero" placeholder="Numero de tarjeta">
+      <div *ngIf="formPurchase.controls['numero'].invalid && formPurchase.controls['numero'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="titular">Titular de Tarjeta</label>
+      <input type="text" class="form-control" id="titular" formControlName="titular" placeholder="Titular de tarjeta">
+      <div *ngIf="formPurchase.controls['titular'].invalid && formPurchase.controls['titular'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <div class="col-sm">
+      <label for="cvv">Codigo</label>
+      <input type="text" class="form-control" id="cvv" formControlName="cvv"  placeholder="Ingrese el CVV">
+      <div *ngIf="formPurchase.controls['cvv'].invalid && formPurchase.controls['cvv'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <div class="col-sm">
+      <label for="mes">Mes</label>
+      <input type="number" class="form-control" id="mes" formControlName="mes" placeholder="Mes">
+      <div *ngIf="formPurchase.controls['mes'].invalid && formPurchase.controls['mes'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <div class="col-sm">
+      <label for="año">Año</label>
+      <input type="number" class="form-control" id="año" formControlName="año" placeholder="Año">
+      <div *ngIf="formPurchase.controls['año'].invalid && formPurchase.controls['año'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <div>
+      <span class="error" *ngIf="error !== ''">{{error}}</span>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary-outlined mt-3" [disabled]="formPurchase.invalid">Crear</button>
+    </div>
+  </form>
+</div>

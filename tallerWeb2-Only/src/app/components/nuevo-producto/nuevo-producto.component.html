@@ -1,0 +1,49 @@
+<div class="formContainer">
+  <form [formGroup]='formNewProduct' (submit)="createProduct()">
+    <div class="form-group">
+      <h2>Nuevo Producto</h2>
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
+      <div *ngIf="formNewProduct.controls['name'].invalid && formNewProduct.controls['name'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="codigo">Codigo</label>
+      <input type="text" class="form-control" id="codigo" formControlName="codigo"  placeholder="Codigo">
+      <div *ngIf="formNewProduct.controls['codigo'].invalid && formNewProduct.controls['codigo'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="price">Precio</label>
+      <input type="number" class="form-control" id="price" formControlName="price" placeholder="Precio">
+      <div *ngIf="formNewProduct.controls['price'].invalid && formNewProduct.controls['price'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="img">Imagen</label>
+      <input type="text" class="form-control" id="img" formControlName="img" placeholder="Url de la imagen">
+      <div *ngIf="formNewProduct.controls['img'].invalid && formNewProduct.controls['img'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="ofert">Oferta</label>
+      <input type="checkbox" class="form-check-input ms-2" id="ofert" formControlName="ofert" placeholder="Oferta" (click)="changeOfert()" checked>
+      <div *ngIf="formNewProduct.controls['ofert'].invalid && formNewProduct.controls['ofert'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group" *ngIf="ofert">
+      <label for="desc">Descuento</label>
+      <input type="text" class="form-control" id="desc" formControlName="desc" placeholder="Porcentaje de descuento en %">
+      <div *ngIf="formNewProduct.controls['desc'].invalid && formNewProduct.controls['desc'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="cantidad">Cantidad Stock</label>
+      <input type="number" class="form-control" id="cantidad" formControlName="cantidad" placeholder="Cantidad de stock">
+      <div *ngIf="formNewProduct.controls['cantidad'].invalid && formNewProduct.controls['cantidad'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+    <div class="form-group">
+      <label for="details">Descripcion</label>
+      <textarea class="form-control" id="details" formControlName="details" placeholder="Descripcion"></textarea>
+      <div *ngIf="formNewProduct.controls['details'].invalid && formNewProduct.controls['details'].dirty" class="error">Este campo es requerido.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary-outlined mt-3" [disabled]="formNewProduct.invalid">Crear</button>
+  </form>
+</div>

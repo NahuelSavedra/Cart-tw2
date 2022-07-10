@@ -1,0 +1,27 @@
+<div class="formContainer">
+  <form [formGroup]='formConfirm' (ngSubmit)="confirmAccount();">
+    <div class="d-flex justify-content-center">
+      <img src="../../../assets/logo.png" alt="Logo" style="width: 50%; margin-bottom: 30px;">
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <h3>Confirmar Cuenta</h3>
+      <p class="form-label">Email</p>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Ingrese su Correo"/>
+      <p class="error" *ngIf="formConfirm.controls['email'].hasError('required') && formConfirm.controls['email'].dirty">Este campo es requerido.</p>
+      <p class="error" *ngIf="formConfirm.controls['email'].hasError('email')">Formato Invalido.</p>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <p class="form-label">Codigo de Confirmacion</p>
+      <input type="text" id="code" class="form-control" formControlName="code" placeholder="Ingrese el codigo que recibio"/>
+      <p class="error" *ngIf="formConfirm.controls['code'].hasError('required')  && formConfirm.controls['code'].dirty">Este campo es requerido.</p>
+    </div>
+
+    <!-- Submit button -->
+    <div *ngIf="error !== ''"><span class="error">{{error}}</span></div>
+    <button type="submit" class="btn btn-outline-dark btn-block mb-4" [disabled]="formConfirm.invalid" >Confirmar Cuenta</button>
+    <div *ngIf="!statusCode" class="error">El codigo o usuario ingresado no son validos.</div>
+  </form>
+</div>

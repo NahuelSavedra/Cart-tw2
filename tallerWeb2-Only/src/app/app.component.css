@@ -1,0 +1,60 @@
+/*  ------------------------------- NAVBAR ----------------------------- */
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #2a282e;
+  color: white;
+  font-weight: 600;
+}
+
+.toolbar img {
+  margin: 0 16px;
+}
+
+.toolbar .buttons {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.toolbar .buttons a{
+  color: white;
+  transition: .5s ease-in-out all;
+}
+
+.toolbar .buttons a:hover{
+  color: grey;
+}
+
+
+/**************************************** FOOTER ****************************************/
+
+footer{
+  background-color: #2a282e;
+  color: white;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+}
+
+.flex a{
+  color: rgb(155, 154, 154);
+  text-decoration: none;
+}
+
+

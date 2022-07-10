@@ -1,0 +1,95 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img width="40" height="40" alt="Only Design Logo" src="../assets/logo.png" />
+  <h1>ONLY DESIGN</h1>
+  <div class="spacer"></div>
+  <div class="buttons">
+    <a routerLink="/" routerLinkActive="active">Home</a>
+    <a routerLink="/productos" routerLinkActive="active">Productos</a>
+    <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+    <a *ngIf="loged !== ''" routerLink="/" routerLinkActive="active" style="padding-left: 20px;">{{loged}}</a>
+    <button (click)="abrirPopUp()" class="btn btn-primary text-white "><i class="fa-solid fa-cart-shopping"><span
+          #cantidadDeProductos id="cantidadProductos">
+          {{cantidadDePorductos}}</span></i></button>
+    <!-- <button *ngIf="loged !== ''" (click)="abrirPopUp()" class="btn btn-primary text-white "><i
+            class="fa-solid fa-cart-shopping"><span #cantidadDeProductos id="cantidadProductos">
+              {{cantidadDePorductos}}</span></i></button>-->
+    <button *ngIf="loged !== ''" class="btn btn-danger text-white" (click)="cerrarSesion()"><i
+        class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    <a *ngIf="loged === ''" routerLink="/login" routerLinkActive="active"><img src="../assets/login.png" alt="Login"
+        width="30" height="30">Iniciar sesión</a>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
+
+<div *ngIf="viewModal == true">
+  <div class="card w-50 mx-auto position-absolute top-50 start-50 translate-middle bg-dark">
+    <!-- Product section-->
+    <div class="card-body mx-auto w-100">
+      <div *ngIf="products.length !== 0;else templateName" >
+        <table class="table text-white">
+          <thead>
+            <tr>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Codigo</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Oferta</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="w-100">
+            <tr *ngFor="let product of products">
+              <td>{{product.cantidad}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.codigo}}</td>
+              <td *ngIf="!product.ofert">${{product.price}}.-</td>
+              <td *ngIf="product.ofert">${{product.price - (product.price / product.desc)}}.-</td>
+              <td *ngIf="product.ofert">SI</td>
+              <td *ngIf="!product.ofert">NO</td>
+              <td><button class="btn btn-danger" (click)="sacarReloj(product)"><i class="fa-solid fa-trash-can"></i></button></td>
+            </tr>
+            <tr class="precioTotal">
+              <td><p class="valor">Precio Total</p></td>
+              <td><p class="fw-bold valor">$ {{precioTotal}}.-</p></td>
+            </tr>
+          </tbody>
+          <div>
+          <button type="button" class="btn btn-success btn-lg btn-block mt-2" (click)="ConfirmarCompra()">Comprar</button>
+          <button class="btn btn-danger btn-lg btn-block mt-2 ms-2"(click)="cerrarPopUp()">Cerrar</button>
+        </div>
+        </table>
+      </div>
+      <ng-template #templateName>
+        <h2 class="text-white display-5 text-center">No hay productos agregados</h2>
+        <div class="d-flex justify-content-center align-content-center">
+          <button class="btn btn-danger btn-lg btn-block mt-2 ms-2"(click)="cerrarPopUp()">Cerrar</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <h3>Tecnicatura en Desarrollo Web</h3>
+  <div class="flex">
+    <a routerLink="#" routerLinkActive="active">Home</a>
+    <a routerLink="/productos" routerLinkActive="active">Productos</a>
+    <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+  </div>
+  <div class="flex">
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-instagram"></i>
+    </button>
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-twitter"></i>
+    </button>
+  </div>
+</footer>
